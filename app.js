@@ -1,26 +1,44 @@
-var ssBtn, stepBtn, genCount, canva, ctx;
+
+// VARIABLES //
+var ssBtn, stepBtn, genCount, newBtn, canvas, ctx;
 
 ssBtn = document.getElementById('start-stop-button');
 stepBtn = document.getElementById('step-button');
 genCount = document.getElementById('generation-counter');
+newBtn = document.getElementById('new-button');
 canvas = document.getElementById('canvas');
 ctx = canvas.getContext('2d');
 
+var isPlaying = false;
 
+
+// USER INTERACTIONS //
 ssBtn.addEventListener('click',function(){
-	ssBtn.textContent === "START" ? ssBtn.textContent = "STOP" : ssBtn.textContent = "START";
+	if(ssBtn.textContent === "START"){
+		ssBtn.textContent = "STOP";
+		isPlaying = true;
+		simulation();
+	} else {
+		ssBtn.textContent = "START";
+		isPlaying = false;
+	}
 })
 
 stepBtn.addEventListener('click',function(){
-	//Update counter
-	genCount.textContent++;
+	genCount.textContent++; //Update counter
+	game.next(); //New generation
+	game.draw();
+})
 
-	//New generation
-	game.next();
+newBtn.addEventListener('click',function(){	
+	genCount.textContent = "0"; //Reset counter
+	game.init(); //Initialising table
+	game.rand(); //Draw random pattern
 	game.draw();
 })
 
 
+// OBJECT //
 var game = {
 	rows: 100, 
 	cols: 100,
@@ -38,13 +56,23 @@ var game = {
 		for (let i=0; i<table.length; i++){
 			table[i] = new Array(this.rows);
 			for(let j=0; j<table[i].length; j++){
-				table[i][j] = Math.floor(Math.random()*2);
+				table[i][j] = 0;
 			}
 		}
 
 		set: this.table = table;
 		console.log(table);
 		return table;
+	},
+
+	rand: function(table = this.table){
+		for(let i=0; i<table.length; i++){
+			for(let j=0; j<table[i].length; j++){
+				table[i][j] = Math.floor(Math.random()*2);
+			}
+		}
+
+		set: this.table = table;
 	},
 
 	draw: function(table = this.table){
@@ -98,3 +126,18 @@ var game = {
 		return sum;	
 	}
 };
+
+
+// FUNCTIONS //
+function simulation(){
+	if(isPlaying === true){
+		game.next();
+		game.draw();
+		genCount.textContent++;
+		window.requestAnimationFrame(simulation);
+	} else {
+		return
+	}
+}
+
+game.init();
