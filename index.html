@@ -18,6 +18,11 @@
 				<button class="control-buttons" id="step-button">STEP</button>
 				<button class="control-buttons" id="start-stop-button">START</button>
 				<button class="control-buttons" id="new-button">NEW</button>
+				<div class="resolution-setting">
+					<input type="range" class="slider" id="resolution" min="10" max="500" value="100" onchange="setResolution(this.value)">
+					<p id="slider-value">100</p>					
+				</div>
+
 			</div>
 		</div>
 

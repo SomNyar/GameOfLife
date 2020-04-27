@@ -48,6 +48,13 @@ openFile.addEventListener('change',function(){
   fr.readAsText(this.files[0]);
 })
 
+function setResolution(v){
+	game.rows = parseInt(v);
+	game.cols = parseInt(v);
+	game.init();
+	document.getElementById('slider-value').textContent = v.toString();
+}
+
 
 // OBJECT //
 var game = {
