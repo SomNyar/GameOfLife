@@ -55,6 +55,16 @@ function setResolution(v){
 	document.getElementById('slider-value').textContent = v.toString();
 }
 
+canvas.addEventListener('mousedown', function(e){
+	let pos = {x:0, y:0};
+
+	pos.x = Math.floor(e.clientX/game.steps[0]);
+	pos.y = Math.floor(e.clientY/game.steps[1]);
+
+	game.table[pos.x][pos.y] = 1 - game.table[pos.x][pos.y];
+	game.draw();
+})
+
 
 // OBJECT //
 var game = {
