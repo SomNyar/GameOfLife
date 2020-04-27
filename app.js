@@ -37,6 +37,17 @@ newBtn.addEventListener('click',function(){
 	game.draw();
 })
 
+openFile.addEventListener('change',function(){
+  let fr = new FileReader();
+  fr.onload = function() {
+  	game.init();
+  	genCount.textContent = 0;
+    fitCanvas(lifParse(this.result));
+    game.draw();
+  }
+  fr.readAsText(this.files[0]);
+})
+
 
 // OBJECT //
 var game = {
@@ -59,9 +70,7 @@ var game = {
 				table[i][j] = 0;
 			}
 		}
-
 		set: this.table = table;
-		console.log(table);
 		return table;
 	},
 
@@ -137,6 +146,73 @@ function simulation(){
 		window.requestAnimationFrame(simulation);
 	} else {
 		return
+	}
+}
+
+function lifParse(s){
+	// .lif format:
+	// - "#D"	- Description 			(multiple)
+	// - "#N"	- new-line denominator 	(single)
+	// - "#P"	- shape & start-point	(multiple)
+	let descript, info, coordinates, animal;
+	animal = [];
+	coordinates = [];
+	
+	//Description
+	descript = s.slice(0, s.indexOf("#N")); //Collecting
+	descript = descript.replace(/#D/g,""); //Removing tag-s
+	descript = descript.slice(descript.indexOf("\n")+1,descript.length); //Remove undescriptive first line
+	document.getElementById("fileContents").textContent = descript;
+
+	//Content
+	info = s.slice(s.indexOf("#N") + "#N".length, s.length); //Collecting
+
+	while(info.lastIndexOf("#P") > 0){
+		//Uncouple animal infos
+		let a = info.slice(info.lastIndexOf("#P")+"#P".length, info.length);
+		info = info.slice(0, info.lastIndexOf("#P"));
+
+		//Start coordinates
+		let c = a.slice(0, a.indexOf("\n")); //replace: coord
+		a = a.slice(a.indexOf("\n")+1, a.length); //replace: animal
+		c = c.trim();
+		c = c.split(/\s/);
+		c = [parseInt(c.shift()), parseInt(c.join(' '))];
+
+		console.log(c);
+		console.log(a);
+
+		//Animal shape conversion
+		let as = new Array(2);
+		as = [0,0];
+		for(let i=0; i<a.length; i++){
+			if(a[i] == "\n"){
+				as[0]++;
+				as[1] = 0;
+			}else if(a[i] == "*"){
+				//Total relative position
+				coordinates.push([as[0]+c[0], as[1]+c[1]]); //Jobb lenne Array helyett Object {x: ,y: }
+				as[1]++;
+			}else{
+				as[1]++;
+			}
+		}
+
+	}
+	return coordinates;
+}
+
+function fitCanvas(c){
+	try{
+		let cc, cx, cy;
+		cc = {x: Math.floor(game.rows/2), y: Math.floor(game.cols/2)}; //replace: canvasCenter
+		for(let i=0; i<c.length; i++){
+			cx = c[i][0] + cc.x;
+			cy = c[i][1] + cc.y;
+			game.table[cx][cy] = 1;
+		}
+	} catch {
+		alert("Canvas too small! Choose higher ROW & COLUMN numbers");
 	}
 }
 
