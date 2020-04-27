@@ -1,2 +1,2 @@
 # GameOfLife
-Convay's Game of Life application created for VCC job application
+Convay's Game of Life cellular automat created for VCC job application
