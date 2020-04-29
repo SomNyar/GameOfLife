@@ -105,6 +105,25 @@ body {
 	height: 100%;
 }
 
+.description-panel {
+	grid-column: 3;
+	grid-row: 1;
+	width: 500px;
+	padding-top: 100px;
+	font-family: sans-serif;
+	color: #0D2840;
+}
+
+.desc-title {
+	font-size: 23px;
+	margin-left: 40px;
+}
+
+.desc-content {
+	margin-left: 60px;
+	line-height: 1.2;
+}
+
 
 .footer {
 	background-color: #22313E;
