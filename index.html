@@ -2,43 +2,47 @@
 <html>
 <head>
 	<title>Game of Life</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<div class="header">
+		<img id="title-img" src="images/title.svg">
+	</div>
 	
-	<div class="wrapper clearfix">
-		<div class="display">
-			<canvas id="canvas" width="500" height="500" style="border:2px solid #050505;"></canvas>
-		</div>
+	<div class="wrapper">
+		
+		<canvas id="canvas" width="500" height="500"></canvas>
 
-		<div class="input-panel">
-			<div class="control-panel">
-				
-			</div>
-			<div class="setup-panel">
-				<button class="control-buttons" id="step-button">STEP</button>
-				<button class="control-buttons" id="start-stop-button">START</button>
-				<button class="control-buttons" id="new-button">NEW</button>
-				<div class="resolution-setting">
-					<input type="range" class="slider" id="resolution" min="10" max="500" value="100" onchange="setResolution(this.value)">
-					<p id="slider-value">100</p>					
-				</div>
+		<div class="control-panel">
+			<p class="titles" style="margin-bottom: 0px">Controls:</p>
+			<button class="control-buttons" id="step-button">STEP</button>
+			<button class="control-buttons" id="start-stop-button">START</button>
+			<button class="control-buttons" id="random-button">RANDOM</button>		
 
-			</div>
-		</div>
-
-		<div class="information-panel">
-			<div class="info-description">Generations:</div>
+			<div class="information-panel">
+				<div class="titles" id="info-description">Generations:</div>
 				<div class="info-content" id="generation-counter">0</div>
-		</div>
-
-		<div class="import-panel">
-			<div class="file-import">
-				<input type="file" id="openFile">
-				<br>
-				<pre id="fileContents"></pre>
 			</div>
-		</div>
 
+			<div id="slider-position">
+				<p class="titles" id="res-desc">Resolution:</p>
+				<input type="range" id="resolution" min="10" max="500" value="100" onchange="setResolution(this.value)">
+				<p id="slider-value">100</p>
+			</div>
+
+			<div class="import-panel">
+				<div class="file-import">
+					<p class="titles" id="imp-desc">Importing .lif files</p>
+					<input type="file" id="openFile">
+					<br>
+					<pre id="fileContents">No file chosen</pre>
+				</div>
+			</div>			
+		</div>
+	</div>
+
+	<div class="footer">
+		<p id="auth">Created by: Soma Nyári</p>
 	</div>
 </div>
 

@@ -1,0 +1,125 @@
+
+.header {
+	right: 0;
+	top: 0;
+	height: 60;
+	width: 20%;
+	position: fixed;
+	background-color: white;
+	box-shadow: 0px 2px 5px grey;
+}
+
+#title-img {
+	width: 200px;
+	margin: 5px;
+	margin-left: 15px;
+}
+
+.wrapper {
+  	display: grid;
+  	grid-template-columns: repeat(3, 1fr);
+  	grid-gap: 10px;
+  	grid-auto-rows: minmax(100px, auto);
+}
+
+#canvas {
+	box-shadow: 0px 2px 5px grey;
+	background-color: white;
+ 	grid-column: 1 / 2;
+ 	grid-row: 1 / 2;
+}
+
+.control-panel {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+.control-buttons {
+	margin: 10px;
+	padding: 5px;
+	border-radius: 12px;
+	width: 100px;
+}
+
+.information-panel {
+	margin-top: 10px;
+	margin-bottom: 30px; 
+	font-family: sans-serif;
+}
+
+#info-description {
+	float: left;
+	margin-left: 10px;
+}
+
+.info-content {
+	 float: right; 
+	 margin-right: 300px
+}
+
+#slider-position {
+
+}
+
+#res-desc {
+	margin: 50px 0px 10px 10px;
+	font-family: sans-serif;
+}
+
+#resolution {
+	padding-bottom: 0px;
+	margin-left: 20px;
+}
+
+#slider-value {
+	margin-top: 0px;
+	margin-left: 70px;
+}
+
+#imp-desc {
+	margin-left: 10px;
+	text-decoration: underline;
+}
+
+.titles {
+	text-decoration: underline;
+	font-family: sans-serif;
+	margin-left: 10px;
+}
+
+#openFile {
+	margin-left: 10px;
+}
+
+#fileContents {
+	margin: 10px;
+	background-color: white;
+	border-radius: 10px;
+	height: 225px;
+}
+
+
+body {
+	background-color: #EDEDED;
+	margin: 0px;
+	height: 100%;
+}
+
+
+.footer {
+	background-color: #22313E;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	height: 30px;
+	width: 100%;
+	margin: 0px;
+	text-align: right;
+}
+
+#auth {
+	margin: 10px;
+	color: white;
+	font-family: sans-serif;
+	font-size: 10px;
+}

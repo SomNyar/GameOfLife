@@ -5,7 +5,7 @@ var ssBtn, stepBtn, genCount, newBtn, canvas, ctx;
 ssBtn = document.getElementById('start-stop-button');
 stepBtn = document.getElementById('step-button');
 genCount = document.getElementById('generation-counter');
-newBtn = document.getElementById('new-button');
+rndBtn = document.getElementById('random-button');
 canvas = document.getElementById('canvas');
 ctx = canvas.getContext('2d');
 
@@ -30,7 +30,7 @@ stepBtn.addEventListener('click',function(){
 	game.draw();
 })
 
-newBtn.addEventListener('click',function(){	
+rndBtn.addEventListener('click',function(){	
 	genCount.textContent = "0"; //Reset counter
 	game.init(); //Initialising table
 	game.rand(); //Draw random pattern
